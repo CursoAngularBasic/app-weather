@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
       const isLogin =  this.userSrv.login(this.form.value)
   
       if (isLogin) {
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/page']);
       }
      }, 5000);
      

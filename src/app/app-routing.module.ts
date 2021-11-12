@@ -13,8 +13,8 @@ const routes: Routes = [
     loadChildren:()=> import('./page/auth/auth.module').then(m=> m.AuthModule)
   },
   {
-    path:'dashboard',
-    loadChildren: ()=> import('./page/dashboard/dashboard.module').then(m=> m.DashboardModule),
+    path:'page',
+    loadChildren: ()=> import('./page/page.module').then(m=> m.PageModule),
     canLoad:[AuthGuard]
   }
 ];

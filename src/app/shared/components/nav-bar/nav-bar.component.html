@@ -1,0 +1,22 @@
+<mat-toolbar  color="primary" class="example-toolbar">
+    <button mat-icon-button (click)="isExpanded = !isExpanded">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <h1 class="example-app-name">App weather</h1>
+</mat-toolbar>
+<mat-sidenav-container>
+    <mat-sidenav #sidenav class="example-sidenav" mode="side" opened="true">
+     <mat-nav-list>
+         <mat-list-item>
+             <a mat-list-item [routerLink]="['/page']" routerLinkActive="router-link-active"  >
+                 <mat-icon mat-list-icon>home</mat-icon>
+                 <span *ngIf="isExpanded || isShowing">Home</span>
+             </a>
+         </mat-list-item>
+     </mat-nav-list>
+    </mat-sidenav>
+
+    <div class="example-sidenav-content">
+        <ng-content select="[content]"></ng-content>
+    </div>
+</mat-sidenav-container>
