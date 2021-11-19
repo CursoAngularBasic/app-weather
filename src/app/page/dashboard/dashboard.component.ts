@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import * as moment from 'moment';
+import { CurrentResponse } from 'src/app/models/current-response.model';
+import Swal from 'sweetalert2';
 import { DashboardService } from './dashboard.service';
 
 @Component({
@@ -9,16 +12,69 @@ import { DashboardService } from './dashboard.service';
 export class DashboardComponent implements OnInit {
   title = 'app-weather';
 
+  current: CurrentResponse = new CurrentResponse();
+
+  @ViewChild('city') city!:ElementRef;
   constructor(private dashboardSrv:DashboardService) { }
 
   ngOnInit(): void {
-    debugger;
    var req={
-      city:'cordoba',
+      city:'florida',
       unit:'metric'
     }
+    
+    this.getCurrent(req);
+  }
+
+  getCurrent(req:any){
     this.dashboardSrv.getCurrentWeatherByCitiName(req).subscribe((data)=>{
-      console.log(data)
+      if (data) {
+        this.current = data;
+        console.log(this.current);
+        this.current.fecha = moment(this.current.dt * 1000).lang('es').format('dddd DD MMMM YYYY');
+        this.current.main.temp = Math.round(this.current.main.temp);
+        this.current.main.feels_like = Math.round(this.current.main.feels_like);
+        
+        this.getHourly(data.coord.lat,data.coord.lon);
+      } else {
+        Swal.fire({
+          title:'Error',
+          icon:'error',
+          text:'No se encontro la ciudad'
+        })
+      }
+    },
+    (err)=>{
+      Swal.fire({
+        title:'Error',
+        icon:'error',
+        text: err.error.message
+      })
+    }
+    );
+  }
+
+  find(){
+    var ciudad = this.city.nativeElement.value;
+
+    var req={
+      city: ciudad,
+      unit:'metric'
+    }
+
+    this.getCurrent(req);
+  }
+
+  getHourly(lat:any,lon:any){
+    var req ={
+      lat,
+      lon,
+      unit:'metric'
+    }
+
+    console.log(req);
+    this.dashboardSrv.getHourly(req).subscribe(data=>{
+      console.log(data);
     })
   }
 

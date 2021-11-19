@@ -8,7 +8,10 @@ import { DashboardModule } from './page/dashboard/dashboard.module';
 import { AuthModule } from './page/auth/auth.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ComponentsModule } from './shared/components/components.module';
+import {registerLocaleData} from '@angular/common';
 
+import localesEsAR from '@angular/common/locales/es-AR'
+registerLocaleData(localesEsAR,'es-Ar')
 @NgModule({
   declarations: [
     AppComponent

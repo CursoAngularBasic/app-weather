@@ -1,0 +1,52 @@
+<mat-card class="top">
+    <mat-card-title>
+    <div class="city">
+      <p class="large-text-semibold">{{ current.name + ' '+ current.sys?.country}}</p>
+      <p class="normal-text-semibold">{{ fecha  }}</p>
+    </div>
+</mat-card-title>
+    <div class="weather-illustration">
+      <img
+        [src]="
+          'assets/icons/weather-conditions/' + current.weather[0].icon + '.svg'
+        "
+        width="320"
+        height="180"
+        alt="Ilustración"
+      />
+      <div class="temp-info">
+        <div class="current-temp">
+          <p class="large-text-semibold">
+            {{ current.main.temp }} °C
+          </p>
+          <p class="medium-text">{{ current.weather[0].description.toUpperCase() }}</p>
+        </div>
+        <div class="feels-like">
+          <p class="medium-text">Sensación Termica</p>
+          <p class="medium-text-semibold">
+            {{ current.main.feels_like }} °C
+          </p>
+        </div>
+      </div>
+    </div>   
+        <div class="humidity">
+          <img
+            src="assets/icons/dashboard/drops.svg"
+            alt="Drop"
+            width="32"
+            height="32"
+          />
+          <p>{{ current.main.humidity }} %</p>
+        </div>
+        <div class="wind">
+          <img
+            src="assets/icons/dashboard/wind.svg"
+            alt="Wind"
+            width="32"
+            height="32"
+          />
+          <p>{{ current.wind.speed }} Km/h</p>
+        </div>
+</mat-card>
+
+  

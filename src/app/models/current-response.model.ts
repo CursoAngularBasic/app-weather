@@ -18,5 +18,6 @@ export class CurrentResponse {
     timezone!:number;
     id!:number;
     name!:string;
-    cod!:number
+    cod!:number;
+    fecha!:string
 }

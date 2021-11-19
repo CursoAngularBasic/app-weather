@@ -15,9 +15,14 @@ export class DashboardService {
   constructor(private http:HttpClient) { }
 
   getCurrentWeatherByCitiName(data:any):Observable<CurrentResponse>{
-    debugger;
-    let url = `${this.API_URL}/weather?q=${data.city}&units${data.unit}&appid=${this.KEY}${this.LANG}`
+    let url = `${this.API_URL}/weather?q=${data.city}&units=${data.unit}&appid=${this.KEY}${this.LANG}`
     var response = this.http.get<CurrentResponse>(url) 
+    return response;
+  }
+
+  getHourly(data:any):Observable<any>{
+    let url = `${this.API_URL}/onecall?lat=${data.lat}&lon=${data.long}&units=metric&appid=${this.KEY}${this.LANG}`
+    var response = this.http.get<any>(url);
     return response;
   }
 }
