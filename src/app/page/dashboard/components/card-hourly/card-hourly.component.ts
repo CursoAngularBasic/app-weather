@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Hourly } from 'src/app/models/hourly.model';
 
 @Component({
   selector: 'app-card-hourly',
@@ -7,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CardHourlyComponent implements OnInit {
 
+  @Input() hourly:Array<Hourly> = new Array<Hourly>();
   constructor() { }
 
   ngOnInit(): void {

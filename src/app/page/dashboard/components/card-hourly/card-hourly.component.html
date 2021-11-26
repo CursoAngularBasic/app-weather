@@ -1,1 +1,17 @@
-<p>card-hourly works!</p>
+<section>
+    <div class="today-forecast">
+        <div *ngFor="let item of hourly; first as isFirst; index as i">
+            <div class="widget" *ngIf="i <= 24">
+                <p class="medium-text">
+                    {{ isFirst ? "Ahora" : item.dtFormat}}
+                </p>
+                <img [src]="'assets/icons/weather-conditions/' + 
+                item.weather[0].icon + '.svg'"
+                alt="Ilustración del clima"
+                width="80"
+                height="80">
+                <p class="medium-text">{{item.temp}} °C</p>
+            </div>
+        </div>
+    </div>
+</section>

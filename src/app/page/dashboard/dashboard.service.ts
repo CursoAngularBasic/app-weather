@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CurrentResponse } from 'src/app/models/current-response.model';
+import { HourlyDailyResponse } from 'src/app/models/hourly-daily-response.model';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -20,8 +21,8 @@ export class DashboardService {
     return response;
   }
 
-  getHourly(data:any):Observable<any>{
-    let url = `${this.API_URL}/onecall?lat=${data.lat}&lon=${data.long}&units=metric&appid=${this.KEY}${this.LANG}`
+  getHourly(data:any):Observable<HourlyDailyResponse>{
+    let url = `${this.API_URL}/onecall?lat=${data.lat}&lon=${data.lon}&units=metric&appid=${this.KEY}${this.LANG}`
     var response = this.http.get<any>(url);
     return response;
   }

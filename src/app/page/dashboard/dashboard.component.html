@@ -1,16 +1,21 @@
 <main>
   <mat-form-field class="example-form-field" appearance="fill">
-      <mat-label>Ingresar Ciudad</mat-label>
-      <input matInput type="text" #city>
-      <button matSuffix mat-icon-button (click)="find()">
-        <mat-icon>input</mat-icon>
-      </button>
-  </mat-form-field>
-  <app-card-now [current]="current"></app-card-now>
+    <mat-label>Ingresar Ciudad</mat-label>
+    <input matInput type="text" #city (keydown.enter)="find()">
+    <button matSuffix mat-icon-button (click)="find()">
+      <mat-icon>input</mat-icon>
+    </button>
+</mat-form-field>
   <mat-tab-group>
     <mat-tab label="Hoy">
-      <app-card-hourly></app-card-hourly>
+   
+    <app-card-now [current]="current"></app-card-now>
     </mat-tab>
-    <mat-tab label="Semanal"></mat-tab>
+    <mat-tab label="Proximas 24 hs">
+      <app-card-hourly [hourly]="hourly"></app-card-hourly>
+    </mat-tab>
+    <mat-tab label="Semanal">
+      <app-card-daily [daily]="daily"></app-card-daily>
+    </mat-tab>
   </mat-tab-group>
 </main>
